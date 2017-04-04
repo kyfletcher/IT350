@@ -20,6 +20,18 @@ getInfo.loginCustomer = function(username,password){
 		});
 	});
 };
+
+getInfo.loginEmployee = function(username,password){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.loginEmployee, [username,password], function(err, rows, fields){
+			if(err) reject(err);
+			if(rows.size() !== 0)
+				resolve(rows);
+			else
+				reject('Password or Username are incorrect');
+		});
+	});
+};
 getInfo.getCustomers = function(){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getCustomers,function(err, rows, fields){
@@ -32,6 +44,15 @@ getInfo.getCustomers = function(){
 getInfo.getAgreementsByName = function(name){
 	return new Promise(function(resolve, reject){
 		connection.query(queries.getAgreementsByName, [name], function(err, rows, fields){
+			if(err) reject(err);
+			resolve(rows);
+		});
+	});
+};
+
+getInfo.getAgreementById = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.getAgreementById,[id],function(err,rows,fields){
 			if(err) reject(err);
 			resolve(rows);
 		});
@@ -65,15 +86,23 @@ getInfo.getAnalysts = function(){
 	});
 };
 
-getInfo.getReportByEngage = function(id){
+getInfo.getReportsById = function(id){
 	return new Promise(function(resolve,reject){
-		connection.query(queries.getRebortByEngage,[id],function(err,rows,fields){
+		connection.query(queries.getReportById,[id],function(err,rows,fields){
 			if(err) reject(err);
 			resolve(rows);
 		});
 	});
 };
 
+getInfo.removeReportById = function(id){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.removeReportById,[id],function(err,rows,fields){
+			if(err) reject(err);
+			resolve();
+		});
+	});
+};
 getInfo.getSystemByMac = function(id){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getSystemByMac,[id],function(err,rows,fields){
