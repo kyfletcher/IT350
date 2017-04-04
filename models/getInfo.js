@@ -88,7 +88,7 @@ getInfo.getAnalysts = function(){
 
 getInfo.getReportsById = function(id){
 	return new Promise(function(resolve,reject){
-		connection.query(queries.getReportById,[id],function(err,rows,fields){
+		connection.query(queries.getReportsById,[id],function(err,rows,fields){
 			if(err) reject(err);
 			resolve(rows);
 		});

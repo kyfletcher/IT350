@@ -32,9 +32,9 @@ queries.getAnalysts = 'SELECT * FROM security_analyst';
 // get all of the reports
 queries.getReports = 'SELECT * FROM report';
 // get a report by the agreement id
-queries.getReportById = 'SELECT * FROM report WHERE agreement_id = ?';
+queries.getReportsById = 'SELECT * FROM report WHERE agreement_id = ?';
 // delete a report given the agreement id
-queries.removeReportById = 'DELETE * FROM report WHERE agreement_id = ?';
+queries.removeReportById = 'DELETE * FROM report WHERE report_id = ?';
  // get a hacker by his id 
 queries.getHackerById = 'SELECT * FROM hacker WHERE hacker_id= ?';
 // get all of the attacks
