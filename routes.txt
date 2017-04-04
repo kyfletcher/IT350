@@ -1,0 +1,56 @@
+Below is an explanation of each route and what is required and what method it needs
+
+/
+	method: get
+	used to get the home page, used by both customers and employees
+	displayed page: home
+/loginCustomer
+	method: post
+	used to login a customer, the posted data is username, and password stored under the key of the same name
+	displayed page: N/A
+
+/loginFailed
+	method: get
+	routed to when a login failed
+	displayed page: loginFailed
+
+/customerHome/:name
+	method: get
+	this is the page a customer is redirected to after a successful login, it shows a customers agreements, in the agreements object, the customers name is also based in username
+	displayed page: customerHome
+
+/customerAgreement/:username/:num
+	method: get
+	this is used to display report info for the given agreement num, username is needed to route back to the customer home(see previous), the report is stored under report, agreement under agreement, and customer name under username
+	displayed page: customerReport
+
+/customerResolveReport/:username/:agreement/:num
+	method: get
+	used to resolve a report action item for the given customer, for the given agreement.  The username and agreement are used to redirect back to the agreement page after the report item is removed from the database.
+	displayed page: N/A
+
+/loginEmployee
+	method: post
+	used to login an employee redirects to /employeeHome/:username on success
+	displayed page: N/A
+
+/employeeHome/:name
+	method: get
+	displays an employee home page, the customers info are passed under the customers key, the employee name under employee(name from the route)
+	displayed page: employeeHome
+
+/agreementsList/:employee/:customer
+	method: get
+	displayes a list of agreements with a given customer, passes the agreements under the agreements key, the customer name under customer and the employee under employee
+	displayed page: customerAgreements
+
+/agreement/:employee/:customer/:num
+	method: get
+	gets the reports for a specific agreement with a customer, passes the list of reports under reports, agreement object under agreement, customer name  under customer, and employee name under employee
+	displayed page: employeeReport
+
+/employeeResolveReport/:username/:customer/:agreement/:num
+	method: get
+	used to resolve a customer report for a given agreement and report number
+	reroutes back to the /agreement/:employee/:customer/:num
+	displayed page: N/A

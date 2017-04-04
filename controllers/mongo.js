@@ -40,10 +40,10 @@ exports.setup = function(server){
 	});
 	// for removing a report
 	// routes back the the report page for that agreement
-	server.get('/customerResolveReport/:username/:num', function(req, res){
+	server.get('/customerResolveReport/:username/:agreement/:num', function(req, res){
 		getInfo.removeReportById(req.params.num)
 		.then(function(){
-			res.redirect('/customerAgreement/' + req.params.username + '/' + req.params.num);
+			res.redirect('/customerAgreement/' + req.params.username + '/' + req.params.agreement);
 		})
 		.catch(function(err){
 			console.log(err);
@@ -51,7 +51,7 @@ exports.setup = function(server){
 	});
 
 	// for when an given employee resolves a report
-	server.get('/employeeResolveReport/:username/:agreement/:num', function(req, res){
+	server.get('/employeeResolveReport/:username/:customer/:agreement/:num', function(req, res){
 		getInfo.removeReportById(req.params.num)
 		.then(function(){
 			res.redirect('/agreement/' + req.body.username +'/' + req.params.customer + '/' + req.params.agreement);
