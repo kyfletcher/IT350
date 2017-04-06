@@ -4,7 +4,7 @@ var queries = {};
 
 queries.getAgreements = 'SELECT * FROM agreement';
 // ? the name for the signer's agreements we want
-queries.getAgreementsByname = 'SELECT * FrROM agreement WHERE signer = ?';
+queries.getAgreementsByname = 'SELECT * FROM agreement WHERE signer = ?';
 // geting the data for a specific agreement
 queries.getAgreementById = 'SELECT * FROM agreement WHERE agreement_id = ?';
 
@@ -39,5 +39,8 @@ queries.removeReportById = 'DELETE * FROM report WHERE report_id = ?';
 queries.getHackerById = 'SELECT * FROM hacker WHERE hacker_id= ?';
 // get all of the attacks
 queries.getAttacks = 'SELECT * FROM attack';
-
+// adds a report for the given customer
+queries.addReport = 'INSERT INTO report (agreement_id,engagement,vulnerability,action) VALUES (?,?,?,?)';
+//adds a new agreement
+queries.addAgreement = 'INSERT INTO agreement (agreement_id,effective_date,signer,scope) VALUES (?,?,?,?)';
 exports.queries = queries;

@@ -125,9 +125,31 @@ exports.setup = function(server){
 			console.log(err);
 		});
 	});
+	// add report here
+	server.post('/addReport/:employee/:customer/:agreement', function( req, res){
+		getInfo.addReport(req.params.agreement, req.body.date, req.body.cve, req.body.action)
+		.then(function(){
+			res.redirect('/agreement/' + req.body.employee + '/' + req.body.customer + '/' + req.body.agreement);
+		})
+		.catch(function(err){
+			console.log(err);
+		});
+	});
+	//add agreement here
+	server.post('/addAgreement/:employee/:customer',function(req,res){
+		getInfo.addAgreement(req.body.date, req.params.customer, req.body.scope)
+		.then(function(){
+			res.redirect('/agreementsList/' + req.params.employee +'/' + req.params.customer);
+		})
+		.catch(function(err){
+			console.log(err);
+		});
+	});
+	//remove agreement here <-- this one will suck
 	// the login failed route, used to notify the user something went wrong
 	server.get('/loginFailed', function(req,res){
 		res.render('loginFailed');
 	});
+
 };
 

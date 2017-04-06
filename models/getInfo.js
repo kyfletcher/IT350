@@ -59,6 +59,15 @@ getInfo.getAgreementById = function(id){
 	});
 };
 
+getInfo.addAgreement = function(date,signer,scope){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.addAgreement, ['999',date,signer,scope], function(err){
+			if(err) reject(err);
+			resolve();
+		});
+	});
+};
+
 getInfo.getHackerById = function(id){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getHackerById,[id],function(err,rows,fields){
@@ -103,6 +112,16 @@ getInfo.removeReportById = function(id){
 		});
 	});
 };
+
+getInfo.addReport = function(agreement, date,cve,action){
+	return new Promise(function(resolve,reject){
+		connection.query(queries.addReport,[agreement,date,cve,action], function(err,rows,fields){
+			if(err) reject(err);
+			resolve();
+		});
+	});
+};
+
 getInfo.getSystemByMac = function(id){
 	return new Promise(function(resolve,reject){
 		connection.query(queries.getSystemByMac,[id],function(err,rows,fields){
